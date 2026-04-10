@@ -97,6 +97,10 @@ const screenHeight = 900;
 const screenPadding = 12;
 const maxStars = 5;
 
+function assetPath(path: string) {
+  return `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+}
+
 function createBoard(documents: DeskDocument[]): BoardState {
   return {
     inbox: documents.map((document) => document.id),
@@ -373,7 +377,7 @@ function ProgressHud({ progress }: { progress: number }) {
         <div className="progress-hud__track">
           <img
             className="progress-hud__track-bg"
-            src="/assets/ui/loading-bar-bg.png"
+            src={assetPath("assets/ui/loading-bar-bg.png")}
             alt=""
           />
           <div
@@ -384,7 +388,7 @@ function ProgressHud({ progress }: { progress: number }) {
           >
             <img
               className="progress-hud__track-fill"
-              src="/assets/ui/loading-bar.png"
+              src={assetPath("assets/ui/loading-bar.png")}
               alt=""
             />
           </div>
@@ -403,7 +407,11 @@ function StarsHud({
 }) {
   return (
     <div className="stars-hud">
-      <img className="stars-hud__frame" src="/assets/ui/minimap-bg.png" alt="" />
+      <img
+        className="stars-hud__frame"
+        src={assetPath("assets/ui/minimap-bg.png")}
+        alt=""
+      />
       <div className="stars-hud__content">
         <p className="stars-hud__label">Ранг смены</p>
         <div className="stars-hud__track" aria-hidden="true">
@@ -412,12 +420,16 @@ function StarsHud({
 
             return (
               <span key={index} className="stars-hud__star">
-                <img className="stars-hud__star-base" src="/assets/ui/Star.png" alt="" />
+                <img
+                  className="stars-hud__star-base"
+                  src={assetPath("assets/ui/Star.png")}
+                  alt=""
+                />
                 <span
                   className={`stars-hud__star-fill ${fill > 0 ? "is-active" : ""}`}
                   style={{ width: `${fill * 100}%` }}
                 >
-                  <img src="/assets/ui/Star.png" alt="" />
+                  <img src={assetPath("assets/ui/Star.png")} alt="" />
                 </span>
               </span>
             );
